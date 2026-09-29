@@ -8,5 +8,7 @@
   "day_start_equity": 0.0,
   "entries_today": 0,
   "paused": false,
-  "equity": 0.0
+  "equity": 0.0,
+  "waiting": true,
+  "last_beat": 1790675921.2300224
 }
