@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: anchor-relay
+    runtime: python
+    region: frankfurt
+    plan: free
+    rootDir: relay
+    buildCommand: "true"
+    startCommand: python server.py
