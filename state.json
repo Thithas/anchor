@@ -3,5 +3,10 @@
   "pending": {},
   "open": {},
   "cooldown": {},
-  "last_candle": {}
+  "last_candle": {},
+  "day": "2026-09-29",
+  "day_start_equity": 0.0,
+  "entries_today": 0,
+  "paused": false,
+  "equity": 0.0
 }
