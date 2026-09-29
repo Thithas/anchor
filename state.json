@@ -1,18 +1,21 @@
 {
   "mode": "live",
-  "pending": {
+  "pending": {},
+  "open": {
     "SOL": {
       "oid": "1488779918479863810",
       "side": "long",
-      "entry": 119.19656182046701,
+      "entry": 119.197,
       "stop": 118.43998912747215,
       "tp": 120.70970720645674,
       "atr": 0.5043817953299132,
-      "size": 0.7000000000000001,
-      "placed": 1790678713.50037
+      "size": 0.7,
+      "placed": 1790678713.50037,
+      "opened": "2026-09-29T11:05:19.972429+00:00",
+      "best": 119.479,
+      "trail": null
     }
   },
-  "open": {},
   "cooldown": {},
   "last_candle": {
     "BTC": 1790678700000,
@@ -23,6 +26,6 @@
   "day_start_equity": 38.93,
   "entries_today": 1,
   "paused": false,
-  "equity": 38.93,
+  "equity": 38.9133,
   "last_beat": 1790675921.2300224
 }
