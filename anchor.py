@@ -261,6 +261,17 @@ class Ex:
         step = int(c.get("priceEndStep", 1) or 1) * 10 ** -dp
         return f"{round(px / step) * step:.{dp}f}"
 
+    def ensure_lev(self, coin, lev):
+        if getattr(self, "_lev", {}).get(coin) == lev:
+            return
+        base = {"symbol": self.sym(coin), "productType": self.pt, "marginCoin": self.mc, "leverage": str(lev)}
+        for side in ("long", "short"):
+            try:
+                self.api.post("/api/v2/mix/account/set-leverage", {**base, "holdSide": side})
+            except BitgetError as e:
+                log(f"{coin} leverage {side}: {e}")
+        self._lev = {**getattr(self, "_lev", {}), coin: lev}
+
     def place(self, coin, side, size_s, price, sl, tp):
         body = {"symbol": self.sym(coin), "productType": self.pt, "marginMode": "isolated",
                 "marginCoin": self.mc, "size": size_s, "price": self.fmt_price(coin, price),
@@ -467,6 +478,7 @@ class Anchor:
                 journal(f"skip {coin} {side}: not enough margin")
                 continue
             try:
+                self.ex.ensure_lev(coin, p["lev_cap"])
                 oid = self.ex.place(coin, side, qs, entry, stop, tp)
             except BitgetError as e:
                 journal(f"order rejected {coin} {side}: {e}")
