@@ -3,12 +3,15 @@
   "pending": {},
   "open": {},
   "cooldown": {},
-  "last_candle": {},
+  "last_candle": {
+    "BTC": 1790676900000,
+    "ETH": 1790676900000,
+    "SOL": 1790676900000
+  },
   "day": "2026-09-29",
-  "day_start_equity": 0.0,
+  "day_start_equity": 38.93,
   "entries_today": 0,
   "paused": false,
-  "equity": 0.0,
-  "waiting": true,
+  "equity": 38.93,
   "last_beat": 1790675921.2300224
 }
