@@ -17,3 +17,5 @@
 - 2026-09-29 14:36 UTC - CLOSE BTC long 84129.0000->83800.0000 net -0.4753 (fees 0.0805) equity $39.63 - stop/tp on exchange
 - 2026-09-29 14:36 UTC - CLOSE ETH long 2723.7300->2709.8800 net -0.4806 (fees 0.0651) equity $39.51 - stop/tp on exchange
 - 2026-09-29 18:30 UTC - LIMIT ETH short 0.16 @ 2685.8920 stop 2701.6727 tp 2660.6430 risk $2.52
+- 2026-09-29 18:31 UTC - unfilled ETH short limit cancelled
+- 2026-09-29 18:31 UTC - LIMIT SOL short 2.7 @ 118.6537 stop 119.5796 tp 117.1724 risk $2.50
