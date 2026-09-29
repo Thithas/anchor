@@ -19,3 +19,4 @@
 - 2026-09-29 18:30 UTC - LIMIT ETH short 0.16 @ 2685.8920 stop 2701.6727 tp 2660.6430 risk $2.52
 - 2026-09-29 18:31 UTC - unfilled ETH short limit cancelled
 - 2026-09-29 18:31 UTC - LIMIT SOL short 2.7 @ 118.6537 stop 119.5796 tp 117.1724 risk $2.50
+- 2026-09-29 18:32 UTC - OPEN SOL short size 2.7 @ 118.6540 stop 119.5796 tp 117.1724
