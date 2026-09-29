@@ -1,0 +1,38 @@
+name: tgcheck
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: telegram check
+        env:
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request, urllib.parse
+          t = os.environ.get("TG_TOKEN", "")
+          out = []
+          def call(m, **q):
+              u = f"https://api.telegram.org/bot{t}/{m}"
+              d = urllib.parse.urlencode(q).encode() if q else None
+              try:
+                  return json.load(urllib.request.urlopen(u, data=d, timeout=15))
+              except urllib.error.HTTPError as e:
+                  return json.loads(e.read() or b"{}")
+          me = call("getMe"); out.append(f"getMe ok={me.get('ok')} bot=@{me.get('result',{}).get('username')} {me.get('description','')}")
+          call("deleteWebhook")
+          ups = call("getUpdates")
+          chats = [str((u.get("message") or u.get("my_chat_member") or {}).get("chat", {}).get("id")) for u in ups.get("result", [])]
+          chats = [c for c in chats if c != "None"]
+          out.append(f"updates={len(ups.get('result', []))} chat={chats[-1] if chats else 'NONE - send hi to the bot'}")
+          if chats:
+              r = call("sendMessage", chat_id=chats[-1], text="ANCHOR can hear you. Connected.")
+              out.append(f"send ok={r.get('ok')} {r.get('description','')}")
+          open("tg.md", "w").write("\n".join(out) + "\n")
+          print("\n".join(out))
+          PY
+          git config user.name anchor-bot; git config user.email anchor-bot@users.noreply.github.com
+          git add tg.md; git commit -qm "tg check" && git pull --rebase -q && git push -q
