@@ -88,7 +88,8 @@ def git(*args):
 def commit(msg):
     if not os.environ.get("GITHUB_ACTIONS"):
         return
-    git("add", "-A", "state.json", "trades.jsonl", "journal.md", "status.md", "HALT")
+    files = [f for f in ("state.json", "trades.jsonl", "journal.md", "status.md", "HALT") if os.path.exists(P(f))]
+    git("add", "-A", *files)
     if git("diff", "--cached", "--quiet").returncode == 0:
         return
     git("commit", "-q", "-m", msg)
