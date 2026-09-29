@@ -484,6 +484,18 @@ class Anchor:
         equity, avail = self.eq()
         self.day_roll(equity)
         self.s["equity"] = round(equity, 4)
+        if equity < 5 and not self.s["open"] and not self.s["pending"]:
+            if not self.s.get("waiting"):
+                self.s["waiting"] = True
+                status(f"{self.tag()} connected, waiting for deposit (equity ${equity:.2f})")
+                commit("anchor: waiting for deposit")
+                tg("ANCHOR connected. Waiting for your deposit in USDT-M Futures.")
+            return True
+        if self.s.pop("waiting", None):
+            self.s["day_start_equity"] = equity
+            status(f"{self.tag()} funded, equity ${equity:.2f} - trading")
+            commit("anchor: funded")
+            tg(f"ANCHOR funded with ${equity:.2f}. I'm alive and watching BTC, ETH, SOL.")
         if equity <= self.p["survival_floor"]:
             for coin in list(self.s["open"]):
                 try:
