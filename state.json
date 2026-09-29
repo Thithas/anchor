@@ -19,13 +19,13 @@
   "cooldown": {},
   "last_candle": {
     "BTC": 1790679600000,
-    "ETH": 1790685900000,
-    "SOL": 1790685900000
+    "ETH": 1790686800000,
+    "SOL": 1790686800000
   },
   "day": "2026-09-29",
   "day_start_equity": 38.93,
   "entries_today": 2,
   "paused": false,
-  "equity": 40.2434,
+  "equity": 40.4102,
   "last_beat": 1790675921.2300224
 }

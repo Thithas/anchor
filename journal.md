@@ -9,3 +9,4 @@
 - 2026-09-29 11:15 UTC - LIMIT BTC long 0.0011 @ 83952.1577 stop 83672.5231 tp 84511.4270 risk $0.31
 - 2026-09-29 11:16 UTC - OPEN BTC long size 0.0011 @ 83952.2000 stop 83672.5231 tp 84511.4270
 - 2026-09-29 12:38 UTC - CLOSE SOL long 119.1970->120.6820 net +0.9721 (fees 0.0674) equity $40.38 - stop/tp on exchange
+- 2026-09-29 13:25 UTC - CLOSE BTC long 83952.2000->84531.0000 net +0.5624 (fees 0.0743) equity $40.46 - stop/tp on exchange
