@@ -15,3 +15,4 @@
 - 2026-09-29 13:46 UTC - OPEN BTC long size 0.0012 @ 84129.0000 stop 83805.8068 tp 84775.2564
 - 2026-09-29 13:46 UTC - OPEN ETH long size 0.03 @ 2723.7300 stop 2710.0033 tp 2751.1690
 - 2026-09-29 14:36 UTC - CLOSE BTC long 84129.0000->83800.0000 net -0.4753 (fees 0.0805) equity $39.63 - stop/tp on exchange
+- 2026-09-29 14:36 UTC - CLOSE ETH long 2723.7300->2709.8800 net -0.4806 (fees 0.0651) equity $39.51 - stop/tp on exchange
