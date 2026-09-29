@@ -1,0 +1,20 @@
+{
+  "coins": ["BTC", "ETH", "SOL"],
+  "bankroll": 40,
+  "survival_floor": 28,
+  "risk_pct": 0.015,
+  "max_risk_pct": 0.03,
+  "lev_cap": 5,
+  "max_open": 2,
+  "max_entries_day": 8,
+  "daily_loss_pct": 0.06,
+  "stop_atr": 1.5,
+  "tp_r": 2.0,
+  "trail_after_r": 1.0,
+  "trail_atr": 2.0,
+  "entry_offset_atr": 0.1,
+  "order_ttl_candles": 2,
+  "cooldown_min": 60,
+  "scan_seconds": 30,
+  "_rule": "No changes to strategy numbers until 30 closed trades exist."
+}

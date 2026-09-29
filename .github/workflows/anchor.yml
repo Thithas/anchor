@@ -1,0 +1,36 @@
+name: anchor
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/20 * * * *"
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: anchor
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 58
+    steps:
+      - uses: actions/checkout@v4
+      - name: git identity
+        run: |
+          git config user.name "anchor-bot"
+          git config user.email "anchor-bot@users.noreply.github.com"
+      - name: ANCHOR
+        run: python anchor.py
+        env:
+          RUN_MINUTES: "50"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELAY_URL: ${{ secrets.RELAY_URL }}
+          VERCEL_BYPASS: ${{ secrets.VERCEL_BYPASS }}
+          DEMO_KEY: ${{ secrets.DEMO_KEY }}
+          DEMO_SECRET: ${{ secrets.DEMO_SECRET }}
+          DEMO_PASSPHRASE: ${{ secrets.DEMO_PASSPHRASE }}
+          LIVE_KEY: ${{ secrets.LIVE_KEY }}
+          LIVE_SECRET: ${{ secrets.LIVE_SECRET }}
+          LIVE_PASSPHRASE: ${{ secrets.LIVE_PASSPHRASE }}
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT: ${{ secrets.TG_CHAT }}
