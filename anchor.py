@@ -32,6 +32,8 @@ def load_json(f, default):
 
 
 def save_json(f, obj):
+    if f == "state.json" and os.environ.get("TG_CHAT") and not os.environ.get("TG_CHAT_FROM_SECRET"):
+        obj.setdefault("tg_chat", os.environ["TG_CHAT"])
     with open(P(f), "w") as fh:
         json.dump(obj, fh, indent=2)
 
@@ -44,9 +46,32 @@ def log(msg):
     print(f"{utcnow():%H:%M:%S} {msg}", flush=True)
 
 
+def tg_chat():
+    """Use TG_CHAT if set; otherwise learn it from the last message sent to the bot."""
+    chat = os.environ.get("TG_CHAT") or load_json("state.json", {}).get("tg_chat")
+    token = os.environ.get("TG_TOKEN")
+    if chat or not token:
+        return chat
+    try:
+        with urllib.request.urlopen(f"https://api.telegram.org/bot{token}/getUpdates", timeout=10) as r:
+            ups = json.load(r).get("result", [])
+        for u in reversed(ups):
+            m = u.get("message") or u.get("my_chat_member") or {}
+            if m.get("chat", {}).get("id"):
+                chat = str(m["chat"]["id"])
+                os.environ["TG_CHAT"] = chat
+                st = load_json("state.json", {})
+                st["tg_chat"] = chat
+                save_json("state.json", st)
+                return chat
+    except Exception as e:
+        log(f"telegram chat lookup failed: {e}")
+    return None
+
+
 def tg(msg):
     log("TG " + msg.replace("\n", " | "))
-    token, chat = os.environ.get("TG_TOKEN"), os.environ.get("TG_CHAT")
+    token, chat = os.environ.get("TG_TOKEN"), tg_chat()
     if not token or not chat:
         return
     try:
@@ -63,7 +88,7 @@ def git(*args):
 def commit(msg):
     if not os.environ.get("GITHUB_ACTIONS"):
         return
-    git("add", "-A", "state.json", "trades.jsonl", "journal.md", "HALT")
+    git("add", "-A", "state.json", "trades.jsonl", "journal.md", "status.md", "HALT")
     if git("diff", "--cached", "--quiet").returncode == 0:
         return
     git("commit", "-q", "-m", msg)
@@ -76,6 +101,11 @@ def commit(msg):
 def pull():
     if os.environ.get("GITHUB_ACTIONS"):
         git("pull", "--rebase", "--autostash", "-q")
+
+
+def status(line):
+    with open(P("status.md"), "w") as fh:
+        fh.write(f"{utcnow():%Y-%m-%d %H:%M} UTC - {line}\n")
 
 
 def journal(line):
@@ -477,7 +507,11 @@ class Anchor:
 
     def run(self):
         t0, last_pull, last_beat = time.time(), time.time(), self.s.get("last_beat", 0)
-        tg(f"ANCHOR {self.tag()} awake | equity ${self.eq()[0]:.2f} | open {list(self.s['open']) or 'none'}")
+        e0 = self.eq()[0]
+        status(f"{self.tag()} connected to Bitget, equity ${e0:.2f}")
+        save_json("state.json", self.s)
+        commit("anchor: awake")
+        tg(f"ANCHOR {self.tag()} awake | equity ${e0:.2f} | open {list(self.s['open']) or 'none'}")
         errors = 0
         while time.time() - t0 < RUN_MINUTES * 60:
             if time.time() - last_pull > 120:
@@ -534,6 +568,8 @@ if __name__ == "__main__":
     try:
         keep_going = Anchor().run()
     except Exception as e:
+        status(f"FAILED to start: {str(e)[:300]}")
+        commit("anchor: start failed")
         tg(f"ANCHOR failed to start: {str(e)[:300]}")
         raise
     if keep_going:
