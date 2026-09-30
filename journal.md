@@ -22,3 +22,6 @@
 - 2026-09-29 18:32 UTC - OPEN SOL short size 2.7 @ 118.6540 stop 119.5796 tp 117.1724
 - 2026-09-29 23:07 UTC - CLOSE SOL short 118.6540->119.5840 net -2.7684 (fees 0.2578) equity $36.74 - stop/tp on exchange
 - 2026-09-29 23:30 UTC - LIMIT ETH short 0.22 @ 2681.6134 stop 2692.3147 tp 2664.4914 risk $2.35
+- 2026-09-30 00:00 UTC - unfilled ETH short limit cancelled
+- 2026-09-30 00:15 UTC - skip BTC short: not enough margin
+- 2026-09-30 00:15 UTC - LIMIT SOL short 3.5 @ 118.8180 stop 119.4925 tp 117.7387 risk $2.36
