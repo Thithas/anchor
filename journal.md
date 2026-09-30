@@ -34,3 +34,4 @@
 - 2026-09-30 07:24 UTC - CLOSE ETH short 2672.6200->2671.5000 net -0.2340 (fees 0.4916) equity $33.71 - trailing stop 2670.6649
 - 2026-09-30 07:30 UTC - LIMIT SOL short 2.7 @ 118.5730 stop 119.3824 tp 117.2778 risk $2.19
 - 2026-09-30 07:35 UTC - OPEN SOL short size 2.7 @ 118.5730 stop 119.3824 tp 117.2778
+- 2026-09-30 09:32 UTC - CLOSE SOL short 118.5730->119.3870 net -2.4421 (fees 0.2574) equity $31.27 - stop/tp on exchange
