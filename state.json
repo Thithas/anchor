@@ -12,7 +12,7 @@
       "size": 0.23,
       "placed": 1790734518.8212047,
       "opened": "2026-09-30T02:23:19.402016+00:00",
-      "best": 2666.14,
+      "best": 2663.43,
       "trail": null
     }
   },
@@ -30,6 +30,6 @@
   "day_start_equity": 36.74019985,
   "entries_today": 2,
   "paused": false,
-  "equity": 32.8669,
-  "last_beat": 1790733598.8235211
+  "equity": 35.9144,
+  "last_beat": 1790748007.725905
 }
