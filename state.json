@@ -16,6 +16,7 @@
   "day_start_equity": 36.74019985,
   "entries_today": 3,
   "paused": false,
-  "equity": 31.2659,
-  "last_beat": 1790762409.3013916
+  "equity": 0.0,
+  "last_beat": 1790782672.3498821,
+  "waiting": true
 }
