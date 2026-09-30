@@ -30,3 +30,4 @@
 - 2026-09-30 01:30 UTC - skip BTC short: not enough margin
 - 2026-09-30 02:15 UTC - skip BTC short: not enough margin
 - 2026-09-30 02:15 UTC - LIMIT ETH short 0.23 @ 2672.6242 stop 2682.1379 tp 2657.4023 risk $2.19
+- 2026-09-30 02:23 UTC - OPEN ETH short size 0.23 @ 2672.6200 stop 2682.1379 tp 2657.4023
