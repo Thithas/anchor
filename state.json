@@ -12,11 +12,11 @@
     "ETH": 1790764200000,
     "SOL": 1790764200000
   },
-  "day": "2026-11-10",
+  "day": "2026-11-11",
   "day_start_equity": 0.0,
   "entries_today": 0,
   "paused": false,
   "equity": 0.0,
-  "last_beat": 1794338962.0487745,
+  "last_beat": 1794353386.7200248,
   "waiting": true
 }
